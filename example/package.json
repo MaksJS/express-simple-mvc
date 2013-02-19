@@ -9,6 +9,6 @@
     "express": "*",
     "mongoose": "*",
     "namespace": "git://github.com/MaksJS/Namespace-in-CoffeeScript.git",
-    "express-simple-mvc": "git://github.com/MaksJS/Express-Simple-MVC.git"
+    "express-simple-mvc": "*"
   }
 }
