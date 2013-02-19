@@ -1,0 +1,15 @@
+{
+  "name": "express-simple-mvc",
+  "version": "0.1.0",
+  "description": "simple and lightweight framework to improve Express JS MVC's architecture",
+  "main": "src/simple_mvc.coffee",
+  "dependencies": {
+    "namespace": "git://github.com/MaksJS/Namespace-in-CoffeeScript.git"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MaksJS/Express-Simple-MVC.git"
+  },
+  "author": "MaksJS",
+  "license": "MIT"
+}
