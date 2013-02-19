@@ -4,6 +4,10 @@ Express Simple MVC
 Very simple and lightweight framework to improve Express JS MVC's architecture written in CoffeeScript.
 It provides a simple way to create models and controllers with an object-oriented approach (CoffeeScript).
 
+## How to install
+
+	npm install express-simple-mvc
+
 ## How it works
 
 Create your express application as usual and use the "simple_mvc" function
