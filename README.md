@@ -31,15 +31,15 @@ Define your routes (inspired by Play! Framework), for example :
 	# This file defines all application routes (Higher priority routes first)
 	# ~~~~
 
-	GET       /					   controllers.Players.index
+  GET       /                    controllers.Players.index
 
-	GET       /players             controllers.Players.index
-	GET       /players/new         controllers.Players.new
-	GET       /players/:id         controllers.Players.show
-	GET       /players/:id/edit    controllers.Players.edit
-	POST      /players             controllers.Players.create
-	PUT       /players/:id         controllers.Players.update
-	DELETE    /players/:id         controllers.Players.delete
+  GET       /players             controllers.Players.index
+  GET       /players/new         controllers.Players.new
+  GET       /player/:id          controllers.Players.show
+  GET       /player/:id/edit     controllers.Players.edit
+  POST      /players             controllers.Players.create
+  PUT       /player/:id          controllers.Players.update
+  DELETE    /player/:id          controllers.Players.delete
 
 Create a models and a controllers directory with a Players controller and a Player model.
 For example, simple CRUD (don't forget the namespace)

@@ -2,12 +2,12 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET       /					   controllers.Players.index
+GET       /                    controllers.Players.index
 
 GET       /players             controllers.Players.index
 GET       /players/new         controllers.Players.new
-GET       /players/:id         controllers.Players.show
-GET       /players/:id/edit    controllers.Players.edit
+GET       /player/:id          controllers.Players.show
+GET       /player/:id/edit     controllers.Players.edit
 POST      /players             controllers.Players.create
-PUT       /players/:id         controllers.Players.update
-DELETE    /players/:id         controllers.Players.delete
+PUT       /player/:id          controllers.Players.update
+DELETE    /player/:id          controllers.Players.delete
