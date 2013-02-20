@@ -1,6 +1,6 @@
 {
   "name": "express-simple-mvc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "simple and lightweight framework to improve Express JS MVC's architecture",
   "main": "src/simple_mvc.coffee",
   "dependencies": {

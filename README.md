@@ -6,7 +6,7 @@ It provides a simple way to create models and controllers with an object-oriente
 
 ## How to install
 
-	npm install express-simple-mvc
+    npm install express-simple-mvc
 
 ## How it works
 
@@ -27,19 +27,19 @@ You'll also need a namespace pattern for coffeescript, you can install it with n
 Create a directory called "config" with a file called "routes" inside.
 Define your routes (inspired by Play! Framework), for example :
 
-	# Routes
-	# This file defines all application routes (Higher priority routes first)
-	# ~~~~
+    # Routes
+    # This file defines all application routes (Higher priority routes first)
+    # ~~~~
 
-  GET       /                    controllers.Players.index
-
-  GET       /players             controllers.Players.index
-  GET       /players/new         controllers.Players.new
-  GET       /player/:id          controllers.Players.show
-  GET       /player/:id/edit     controllers.Players.edit
-  POST      /players             controllers.Players.create
-  PUT       /player/:id          controllers.Players.update
-  DELETE    /player/:id          controllers.Players.delete
+    GET       /                    controllers.Players.index
+  
+    GET       /players             controllers.Players.index
+    GET       /players/new         controllers.Players.new
+    GET       /player/:id          controllers.Players.show
+    GET       /player/:id/edit     controllers.Players.edit
+    POST      /players             controllers.Players.create
+    PUT       /player/:id          controllers.Players.update
+    DELETE    /player/:id          controllers.Players.delete
 
 Create a models and a controllers directory with a Players controller and a Player model.
 For example, simple CRUD (don't forget the namespace)
@@ -53,37 +53,37 @@ namespace controllers:
     {Player} = models
 
     # GET /players
-    @index: =>
+    index: ->
       Player.all (players) =>
         @res.send players
 
-    # GET /players/:id
-    @show: =>
+    # GET /player/:id
+    show: ->
       Player.read @req.params.id, (player) =>
         @res.send player
 
     # GET /players/new
-    @new: =>
+    new: ->
       @res.render 'newForm'
 
-    # GET /players/:id/edit
-    @edit: =>
+    # GET /player/:id/edit
+    edit: ->
       Player.read @req.params.id, (player) =>
         @res.render 'editForm'
           player: player
 
     # POST /players
-    @create: =>
+    create: ->
       Player.create @req.param('player'), =>
         @res.send 'New player successfully created !'
 
-    # PUT /players/:id
-    @update: =>
+    # PUT /player/:id
+    update: ->
       Player.update @req.params.id, @req.param('player'), =>
         @res.send "Player #{@req.param('id')} successfully updated !"
 
-    # DELETE /players/:id
-    @delete: =>
+    # DELETE /player/:id
+    delete: ->
       Player.delete @req.params.id, ->
         @res.send "Player #{@req.param('id')} successfully deleted !"
 ```
