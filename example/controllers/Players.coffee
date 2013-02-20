@@ -6,36 +6,36 @@ namespace controllers:
     {Player} = models
 
     # GET /players
-    @index: =>
+    index: ->
       Player.all (players) =>
         @res.send players
 
-    # GET /players/:id
-    @show: =>
+    # GET /player/:id
+    show: ->
       Player.read @req.params.id, (player) =>
         @res.send player
 
     # GET /players/new
-    @new: =>
+    new: ->
       @res.render 'newForm'
 
-    # GET /players/:id/edit
-    @edit: =>
+    # GET /player/:id/edit
+    edit: ->
       Player.read @req.params.id, (player) =>
         @res.render 'editForm'
           player: player
 
     # POST /players
-    @create: =>
+    create: ->
       Player.create @req.param('player'), =>
         @res.send 'New player successfully created !'
 
-    # PUT /players/:id
-    @update: =>
+    # PUT /player/:id
+    update: ->
       Player.update @req.params.id, @req.param('player'), =>
         @res.send "Player #{@req.param('id')} successfully updated !"
 
-    # DELETE /players/:id
-    @delete: =>
+    # DELETE /player/:id
+    delete: ->
       Player.delete @req.params.id, ->
         @res.send "Player #{@req.param('id')} successfully deleted !"
