@@ -5,11 +5,12 @@ require 'namespace'
 
 app = express()
 app.listen 3000
-simple_mvc app
 
 app.configure ->
   app.use express.methodOverride()
   app.use app.router
+
+simple_mvc app, __dirname + '/controllers', __dirname + '/models', __dirname + '/config/routes'
 
 mongoose.connect 'mongodb://127.0.0.1:27017/test', (err) -> 
   if err then throw err

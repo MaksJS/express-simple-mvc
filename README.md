@@ -10,7 +10,7 @@ It provides a simple way to create models and controllers with an object-oriente
 
 ## How it works
 
-Create your express application as usual and use the "simple_mvc" function
+Create your express application as usual and use the "simple_mvc" function and pass the path to the controllers, models and routes directories.
 
 ```coffeescript
 express      = require 'express'
@@ -19,9 +19,16 @@ require 'namespace'
 
 app = express()
 app.listen 3000
-simple_mvc app
+
+app.configure ->
+  app.use express.methodOverride()
+  app.use app.router
+
+simple_mvc app, __dirname + '/controllers', __dirname + '/models', __dirname + '/config/routes'
+
 ```
 
+You must configure your application before using simple_mvc.
 You'll also need a namespace pattern for coffeescript, you can install it with npm install
 
 Create a directory called "config" with a file called "routes" inside.
@@ -53,42 +60,40 @@ namespace controllers:
     {Player} = models
 
     # GET /players
-    index: ->
-      Player.all (players) =>
-        @res.send players
+    @index: (req, res) ->
+      Player.all (players) ->
+        res.send players
 
     # GET /player/:id
-    show: ->
-      Player.read @req.params.id, (player) =>
-        @res.send player
+    @show: (req, res) ->
+      Player.read req.params.id, (player) ->
+        res.send player
 
     # GET /players/new
-    new: ->
-      @res.render 'newForm'
+    @new: (req, res) ->
+      res.render 'newForm'
 
     # GET /player/:id/edit
-    edit: ->
-      Player.read @req.params.id, (player) =>
-        @res.render 'editForm'
+    @edit: (req, res) ->
+      Player.read req.params.id, (player) ->
+        res.render 'editForm'
           player: player
 
     # POST /players
-    create: ->
-      Player.create @req.param('player'), =>
-        @res.send 'New player successfully created !'
+    @create: (req, res) ->
+      Player.create req.param('player'), ->
+        res.send 'New player successfully created !'
 
     # PUT /player/:id
-    update: ->
-      Player.update @req.params.id, @req.param('player'), =>
-        @res.send "Player #{@req.param('id')} successfully updated !"
+    @update: (req, res) ->
+      Player.update req.params.id, req.param('player'), ->
+        res.send "Player #{req.param('id')} successfully updated !"
 
     # DELETE /player/:id
-    delete: ->
-      Player.delete @req.params.id, ->
-        @res.send "Player #{@req.param('id')} successfully deleted !"
+    @delete: (req, res) ->
+      Player.delete req.params.id, ->
+        res.send "Player #{req.param('id')} successfully deleted !"
 ```
-
-Properties @req and @res are automatically send to the controller, you don't need to pass them as params as you would do before with Express
 
 And the for the model (I use mongoose here, but you can adapt it)
 
@@ -136,4 +141,4 @@ namespace models:
         do cb
 ```
 
-And that's all ! Looks difficult ? Have a look at the source code in /src (only 50 lines !) or run the example.
+And that's all ! Looks difficult ? Have a look at the source code in /src (only about 20 lines !) or run the example.

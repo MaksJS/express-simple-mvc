@@ -6,36 +6,36 @@ namespace controllers:
     {Player} = models
 
     # GET /players
-    index: ->
-      Player.all (players) =>
-        @res.send players
+    @index: (req, res) ->
+      Player.all (players) ->
+        res.send players
 
     # GET /player/:id
-    show: ->
-      Player.read @req.params.id, (player) =>
-        @res.send player
+    @show: (req, res) ->
+      Player.read req.params.id, (player) ->
+        res.send player
 
     # GET /players/new
-    new: ->
-      @res.render 'newForm'
+    @new: (req, res) ->
+      res.render 'newForm'
 
     # GET /player/:id/edit
-    edit: ->
-      Player.read @req.params.id, (player) =>
-        @res.render 'editForm'
+    @edit: (req, res) ->
+      Player.read req.params.id, (player) ->
+        res.render 'editForm'
           player: player
 
     # POST /players
-    create: ->
-      Player.create @req.param('player'), =>
-        @res.send 'New player successfully created !'
+    @create: (req, res) ->
+      Player.create req.param('player'), ->
+        res.send 'New player successfully created !'
 
     # PUT /player/:id
-    update: ->
-      Player.update @req.params.id, @req.param('player'), =>
-        @res.send "Player #{@req.param('id')} successfully updated !"
+    @update: (req, res) ->
+      Player.update req.params.id, req.param('player'), ->
+        res.send "Player #{req.param('id')} successfully updated !"
 
     # DELETE /player/:id
-    delete: ->
-      Player.delete @req.params.id, ->
-        @res.send "Player #{@req.param('id')} successfully deleted !"
+    @delete: (req, res) ->
+      Player.delete req.params.id, ->
+        res.send "Player #{req.param('id')} successfully deleted !"
